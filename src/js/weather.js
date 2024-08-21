@@ -9,10 +9,15 @@ function onGeoOk(position) {
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      const country = data.sys.country;
-      const weather = data.weather[0].main;
+      const city = document.querySelector("#weather span:first-child");
+      const weather = document.querySelector("#weather span:last-child");
+      if (data.name === "Yach’on") {
+        city.innerText = "Gwangju";
+      }
+      weather.innerText = `${data.weather[0].main} / ${data.main.temp}`;
     });
 }
+
 function onGeoError() {
   alert("Can't find you. No weather for you.");
 }
